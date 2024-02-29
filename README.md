@@ -1,12 +1,22 @@
 # Course Template
 
 
+[![halla-img]][halla-url]
+[![course-img]][course-url]
+[![lecture-img]][lecture-url]
 [![version-image]][release-url]
 [![release-date-image]][release-url]
 [![license-image]][license-url]
 [![jupyter-book-image]][docs-url]
 
 <!-- Links: -->
+[halla-img]: https://img.shields.io/badge/CHU-halla.ai-blue
+[halla-url]: https://halla.ai
+[course-img]: https://img.shields.io/badge/course-entelecheia.ai-blue
+[course-url]: https://course.entelecheia.ai
+[lecture-img]: https://img.shields.io/badge/lecture-entelecheia.ai-blue
+[lecture-url]: https://lecture.entelecheia.ai
+
 [codecov-image]: https://codecov.io/gh/entelecheia/course-template/branch/main/graph/badge.svg?token=[REPLACE_ME]
 [codecov-url]: https://codecov.io/gh/entelecheia/course-template
 [pypi-image]: https://img.shields.io/pypi/v/course-template
