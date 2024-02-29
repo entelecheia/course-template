@@ -1,13 +1,15 @@
 # Course Template
 
-
+[![pypi-image]][pypi-url]
 [![version-image]][release-url]
 [![release-date-image]][release-url]
 [![license-image]][license-url]
-[![codecov][codecov-image]][codecov-url]
 [![jupyter-book-image]][docs-url]
+[![codecov][codecov-image]][codecov-url]
 
 <!-- Links: -->
+[hyperfast python template]: https://github.com/entelecheia/hyperfast-python-template
+
 [codecov-image]: https://codecov.io/gh/entelecheia/course-template/branch/main/graph/badge.svg?token=[REPLACE_ME]
 [codecov-url]: https://codecov.io/gh/entelecheia/course-template
 [pypi-image]: https://img.shields.io/pypi/v/course-template
@@ -29,7 +31,7 @@ A template for a course
 
 - Documentation: [https://entelecheia.github.io/course-template][docs-url]
 - GitHub: [https://github.com/entelecheia/course-template][repo-url]
-
+- PyPI: [https://pypi.org/project/course-template][pypi-url]
 
 A template for a course
 
@@ -44,3 +46,8 @@ Contributions are welcome! Please see the [contributing guidelines] for more inf
 ## License
 
 This project is released under the [CC-BY-4.0 License][license-url].
+
+## Table of Contents
+
+```{tableofcontents}
+```
