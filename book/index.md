@@ -1,11 +1,9 @@
 # Course Template
 
-[![pypi-image]][pypi-url]
 [![version-image]][release-url]
 [![release-date-image]][release-url]
 [![license-image]][license-url]
 [![jupyter-book-image]][docs-url]
-[![codecov][codecov-image]][codecov-url]
 
 <!-- Links: -->
 [hyperfast python template]: https://github.com/entelecheia/hyperfast-python-template
