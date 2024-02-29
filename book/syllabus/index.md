@@ -1,1 +1,1 @@
-# Course Title
+# Syllabus
