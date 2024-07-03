@@ -9,3 +9,4 @@ deploy-base-image.yaml
 lint_and_test.yaml
 release.yaml
 _toc.yml
+.docker/docker.version
