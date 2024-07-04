@@ -27,7 +27,11 @@ if [ "$USER_UID" != "$LOCAL_UID" ]; then
     groupmod -g "$USER_UID" "$USERNAME"
     echo "Changing ownership of home directory to $USER_UID:$USER_UID"
     chown -R "$USER_UID:$USER_UID" "/home/$USERNAME"
-    if [ -n "$WORKSPACE_ROOT" ] && [ -d "$WORKSPACE_ROOT" ]; then
+    if [ -n "$APP_INSTALL_ROOT" ] && [ -d "$APP_INSTALL_ROOT" ]; then
+        echo "Changing ownership of $APP_INSTALL_ROOT directory to $USER_UID:$USER_UID"
+        chown -R "$USER_UID:$USER_UID" "$APP_INSTALL_ROOT"
+    fi
+    if [ -n "$WORKSPACE_ROOT" ] && [ -d "$WORKSPACE_ROOT" ] && [ "$WORKSPACE_ROOT" != "$APP_INSTALL_ROOT" ]; then
         echo "Changing ownership of workspace directory [$WORKSPACE_ROOT] to $USER_UID:$USER_UID"
         chown -R "$USER_UID:$USER_UID" "$WORKSPACE_ROOT"
     fi
