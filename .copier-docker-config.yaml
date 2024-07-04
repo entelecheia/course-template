@@ -1,5 +1,5 @@
 # Changes here will be overwritten by Copier; do NOT edit manually
-_commit: v0.30.6
+_commit: v0.31.0
 _src_path: gh:entelecheia/hyperfast-docker-template
 app_dirname: course_temp
 app_install_root: /workspace
@@ -42,6 +42,7 @@ use_deploy_workflows: true
 use_jupyter: true
 use_semantic_versioning_for_image: true
 use_ssh_service: true
+use_tty: true
 use_web_service: true
 web_service_host_port: 18761
 web_service_port: 8080
