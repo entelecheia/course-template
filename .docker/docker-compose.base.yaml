@@ -26,10 +26,12 @@ services:
     image: $IMAGE_NAME:$IMAGE_TAG
     # Sets the hostname of the container
     hostname: $CONTAINER_HOSTNAME
-    command:
-      # Specifies the command to be executed when the container is run
-      - bash
-      - $CONTAINER_LAUNCH_SCRIPT
+    # set tty to true to enable terminal access
+    tty: true
+    # command:
+    #   # Specifies the command to be executed when the container is run
+    #   - bash
+    #   - $CONTAINER_LAUNCH_SCRIPT
     # set the environment variables
     environment:
       USER_UID: $CONTAINER_USER_UID
