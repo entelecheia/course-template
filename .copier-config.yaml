@@ -1,11 +1,11 @@
 # Changes here will be overwritten by Copier; do NOT edit manually
-_commit: v0.12.1-1-ged875bd
+_commit: v0.14.4
 _src_path: gh:entelecheia/hyperfast-python-template
 author: Young Joon Lee
-build_and_release: false
+build_and_release: true
 code_template_answers_file: .copier-hyfi-config.yaml
 code_template_source: ''
-codecov_graph_token: '[REPLACE_ME]'
+codecov_graph_token: qlsfdVYveD
 copyright_year: 2024
 documentaion_tool: jupyter-book
 documentation_url: https://entelecheia.github.io/course-template
@@ -14,21 +14,26 @@ favicon_path: https://assets.entelecheia.ai/favicon.png
 friendly_name: Course Template
 github_repo_name: course-template
 github_username: entelecheia
-google_analytics_id: ''
+google_analytics_id: G-BQJE5V9RK2
 logo_path: ''
 main_branch: main
+open_link: true
 package_name: coursetemp
 package_scripts:
 - coursetemp = 'coursetemp.__cli__:main'
 poe_task_files:
 - .tasks.toml
 - .tasks-extra.toml
-project_description: A template for a course
+project_description: This project provides a comprehensive and flexible template for
+    creating and managing online courses, leveraging GitHub for version control and
+    Jupyter Book for interactive content delivery, enabling educators to easily develop,
+    maintain, and share their educational materials.
 project_license: CC-BY-4.0
 project_name: course-template
-project_short_description: A template for a course
-upload_to_release: false
-upload_to_repository: false
+project_short_description: Streamlined course creation template with interactive documentation
+    support
+upload_to_release: true
+upload_to_repository: true
 use_launch_buttons: true
-use_source_code_skeleton: false
+use_source_code_skeleton: true
 
