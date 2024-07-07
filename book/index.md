@@ -9,7 +9,7 @@
 
 [hyperfast python template]: https://github.com/entelecheia/hyperfast-python-template
 
-[codecov-image]: https://codecov.io/gh/entelecheia/course-template/branch/main/graph/badge.svg?token=[REPLACE_ME]
+[codecov-image]: https://codecov.io/gh/entelecheia/course-template/branch/main/graph/badge.svg?token=qlsfdVYveD
 [codecov-url]: https://codecov.io/gh/entelecheia/course-template
 [pypi-image]: https://img.shields.io/pypi/v/course-template
 [license-image]: https://img.shields.io/github/license/entelecheia/course-template

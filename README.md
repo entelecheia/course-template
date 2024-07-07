@@ -7,6 +7,7 @@
 [![version-image]][release-url]
 [![release-date-image]][release-url]
 [![license-image]][license-url]
+[![codecov][codecov-image]][codecov-url]
 [![jupyter-book-image]][docs-url]
 
 <!-- Links: -->
@@ -17,7 +18,7 @@
 [lecture-img]: https://img.shields.io/badge/lecture-entelecheia.ai-blue
 [lecture-url]: https://lecture.entelecheia.ai
 
-[codecov-image]: https://codecov.io/gh/entelecheia/course-template/branch/main/graph/badge.svg?token=[REPLACE_ME]
+[codecov-image]: https://codecov.io/gh/entelecheia/course-template/branch/main/graph/badge.svg?token=qlsfdVYveD
 [codecov-url]: https://codecov.io/gh/entelecheia/course-template
 [pypi-image]: https://img.shields.io/pypi/v/course-template
 [license-image]: https://img.shields.io/github/license/entelecheia/course-template
@@ -34,13 +35,13 @@
 [contributing guidelines]: https://github.com/entelecheia/course-template/blob/main/CONTRIBUTING.md
 <!-- Links: -->
 
-A template for a course
+Streamlined course creation template with interactive documentation support
 
 - Documentation: [https://entelecheia.github.io/course-template][docs-url]
 - GitHub: [https://github.com/entelecheia/course-template][repo-url]
+- PyPI: [https://pypi.org/project/course-template][pypi-url]
 
-
-A template for a course
+This project provides a comprehensive and flexible template for creating and managing online courses, leveraging GitHub for version control and Jupyter Book for interactive content delivery, enabling educators to easily develop, maintain, and share their educational materials.
 
 ## Changelog
 

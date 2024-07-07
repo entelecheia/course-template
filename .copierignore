@@ -1,10 +1,7 @@
 .copierignore
 .tasks-extra.toml
 CHANGELOG.md
-pyproject.toml
 Makefile
 .gitignore
-lint_and_test.yaml
-release.yaml
 _toc.yml
 .docker/docker.version
