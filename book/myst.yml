@@ -3,7 +3,7 @@ project:
   title: Course Template
   authors:
     - name: Young Joon Lee
-  copyright: '2024'
+  copyright: '2025'
   github: entelecheia/course-template
   thebe:
     binder:
