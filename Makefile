@@ -116,39 +116,7 @@ update: install-uv venv ## update dependencies
 lock: install-uv ## lock dependencies (uv sync creates uv.lock)
 	@uv lock
 
-codecov-validate: ## validate codecov.yml
-	@curl -X POST --data-binary @codecov.yml https://codecov.io/validate
-
-##@ Utilities
-
-large-files: ## show the 20 largest files in the repo
-	@find . -printf '%s %p\n'| sort -nr | head -20
-
-disk-usage: ## show the disk usage of the repo
-	@du -h -d 2 .
-
-git-sizer: ## run git-sizer
-	@git-sizer --verbose
-
-gc-prune: ## garbage collect and prune
-	@git gc --prune=now
-
 ##@ Setup
-
-install-node: ## install node
-	@export NVM_DIR="$${HOME}/.nvm"; \
-	[ -s "$${NVM_DIR}/nvm.sh" ] && . "$${NVM_DIR}/nvm.sh"; \
-	nvm install --lts
-
-nvm-ls: ## list node versions
-	@export NVM_DIR="$${HOME}/.nvm"; \
-	[ -s "$${NVM_DIR}/nvm.sh" ] && . "$${NVM_DIR}/nvm.sh"; \
-	nvm ls
-
-set-default-node: ## set default node
-	@export NVM_DIR="$${HOME}/.nvm"; \
-	[ -s "$${NVM_DIR}/nvm.sh" ] && . "$${NVM_DIR}/nvm.sh"; \
-	nvm alias default node
 
 install-pipx: ## install pipx (pre-requisite for external tools)
 	@command -v pipx &> /dev/null || pip install --user pipx || true
@@ -168,19 +136,6 @@ install-precommit: install-pipx ## install pre-commit
 install-precommit-hooks: install-precommit ## install pre-commit hooks
 	@pre-commit install
 
-mkvirtualenv: ## create the project environment
-	@python3 -m venv "$$WORKON_HOME/deepnlp-2023"
-	@. "$$WORKON_HOME/deepnlp-2023/bin/activate"
-	@pip install --upgrade pip setuptools wheel
-
-mkvirtualenv-system: ## create the project environment with system site packages
-	@python3 -m venv "$$WORKON_HOME/deepnlp-2023" --system-site-packages
-	@. "$$WORKON_HOME/deepnlp-2023/bin/activate"
-	@pip install --upgrade pip setuptools wheel
-
-workon: ## activate the project environment
-	@. "$$WORKON_HOME/deepnlp-2023/bin/activate"
-
 initialize: install-pipx ## initialize the project environment
 	@pipx install copier
 	@pipx install uv
@@ -199,52 +154,3 @@ init-project: initialize remove-template ## initialize the project (Warning: do 
 
 reinit-project: install-copier ## reinitialize the project (Warning: this may overwrite existing files!)
 	@bash -c 'args=(); while IFS= read -r file; do args+=("--skip" "$$file"); done < .copierignore; copier copy --trust "$${args[@]}" --answers-file .copier-config.yaml gh:entelecheia/hyperfast-python-template .'
-
-reinit-docker-project: install-copier ## reinitialize the project (Warning: this may overwrite existing files!)
-	@bash -c 'args=(); while IFS= read -r file; do args+=("--skip" "$$file"); done < .copierignore; copier copy "$${args[@]}" --answers-file .copier-docker-config.yaml --trust gh:entelecheia/hyperfast-docker-template .'
-
-##@ Docker
-
-symlink-global-docker-env: ## symlink global docker env file for local development
-	@DOCKERFILES_SHARE_DIR="$HOME/.local/share/dockerfiles" \
-	DOCKER_GLOBAL_ENV_FILENAME=".env.docker" \
-	DOCKER_GLOBAL_ENV_FILE="$${DOCKERFILES_SHARE_DIR}/$${DOCKER_GLOBAL_ENV_FILENAME}" \
-	[ -f "$${DOCKER_GLOBAL_ENV_FILE}" ] && ln -sf "$${DOCKER_GLOBAL_ENV_FILE}" .env.docker || echo "Global docker env file not found"
-
-docker-login: ## login to docker
-	@bash .docker/.docker-scripts/docker-compose.sh login
-
-docker-build: ## build the docker app image
-	@IMAGE_VARIANT=$${IMAGE_VARIANT:-"base"} \
-	DOCKER_PROJECT_ID=$${DOCKER_PROJECT_ID:-"default"} \
-	bash .docker/.docker-scripts/docker-compose.sh build
-
-docker-config: ## show the docker app config
-	@IMAGE_VARIANT=$${IMAGE_VARIANT:-"base"} \
-	DOCKER_PROJECT_ID=$${DOCKER_PROJECT_ID:-"default"} \
-	bash .docker/.docker-scripts/docker-compose.sh config
-
-docker-push: ## push the docker app image
-	@IMAGE_VARIANT=$${IMAGE_VARIANT:-"base"} \
-	DOCKER_PROJECT_ID=$${DOCKER_PROJECT_ID:-"default"} \
-	bash .docker/.docker-scripts/docker-compose.sh push
-
-docker-run: ## run the docker base image
-	@IMAGE_VARIANT=$${IMAGE_VARIANT:-"base"} \
-	DOCKER_PROJECT_ID=$${DOCKER_PROJECT_ID:-"default"} \
-	bash .docker/.docker-scripts/docker-compose.sh run
-
-docker-up: ## launch the docker app image
-	@IMAGE_VARIANT=$${IMAGE_VARIANT:-"base"} \
-	DOCKER_PROJECT_ID=$${DOCKER_PROJECT_ID:-"default"} \
-	bash .docker/.docker-scripts/docker-compose.sh up
-
-docker-up-detach: ## launch the docker app image in detached mode
-	@IMAGE_VARIANT=$${IMAGE_VARIANT:-"base"} \
-	DOCKER_PROJECT_ID=$${DOCKER_PROJECT_ID:-"default"} \
-	bash .docker/.docker-scripts/docker-compose.sh up --detach
-
-docker-tag-latest: ## tag the docker app image as latest
-	@IMAGE_VARIANT=$${IMAGE_VARIANT:-"base"} \
-	DOCKER_PROJECT_ID=$${DOCKER_PROJECT_ID:-"default"} \
-	bash .docker/.docker-scripts/docker-compose.sh tag
