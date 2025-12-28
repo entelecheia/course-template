@@ -33,7 +33,7 @@ site:
     favicon: https://assets.entelecheia.ai/favicon.png
     analytics_google: G-BQJE5V9RK2
     folders: true
-    logo_text: course template
+    logo_text: Course Template
     github_repository_url: https://github.com/entelecheia/course-template
     github_repository_branch: main
     use_issues_button: true
