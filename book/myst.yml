@@ -1,6 +1,6 @@
 version: 1
 project:
-  title: Course Template
+  # title: Course Template
   authors:
     - name: Young Joon Lee
   copyright: '2025'
