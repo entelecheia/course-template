@@ -78,13 +78,13 @@ tests-cov-fail: ## run tests with pytest and generate a coverage report, fail if
 
 ##@ Book
 
-book-build: venv install-book ## build the book
+book-build: install-book ## build the book
 	@uv run jupyter-book build book
 
-book-build-all: venv install-book ## build the book with all outputs
+book-build-all: install-book ## build the book with all outputs
 	@uv run jupyter-book build book --all
 
-book-publish: venv install-book install-ghp-import ## publish the book
+book-publish: install-book install-ghp-import ## publish the book
 	@ghp-import -n -p -f book/_build/html
 
 install-ghp-import: install-pipx ## install ghp-import
@@ -92,26 +92,20 @@ install-ghp-import: install-pipx ## install ghp-import
 
 ##@ Install
 
-venv: install-uv ## create virtual environment if it doesn't exist
-	@if [ ! -d ".venv" ]; then \
-		echo "Creating virtual environment..."; \
-		uv venv; \
-	fi
+install: install-uv ## install dependencies
+	@uv sync
 
-install: install-uv venv ## install dependencies
-	@uv pip install -e .
+install-dev: install-uv ## install dev dependencies
+	@uv sync --extra dev
 
-install-dev: install-uv venv ## install dev dependencies
-	@uv pip install -e ".[dev]"
+install-book: install-uv ## install book dependencies
+	@uv sync --extra book
 
-install-book: install-uv venv ## install book dependencies
-	@uv pip install -e ".[book]"
+install-all: install-uv ## install all dependencies (dev and book)
+	@uv sync --extra dev --extra book
 
-install-all: install-uv venv ## install all dependencies (dev and book)
-	@uv pip install -e ".[dev,book]"
-
-update: install-uv venv ## update dependencies
-	@uv pip install --upgrade -e ".[dev,book]"
+update: install-uv ## update dependencies
+	@uv sync --upgrade --extra dev --extra book
 
 lock: install-uv ## lock dependencies (uv sync creates uv.lock)
 	@uv lock
@@ -120,9 +114,6 @@ lock: install-uv ## lock dependencies (uv sync creates uv.lock)
 
 install-pipx: ## install pipx (pre-requisite for external tools)
 	@command -v pipx &> /dev/null || pip install --user pipx || true
-
-install-copier: install-pipx ## install copier (pre-requisite for init-project)
-	@command -v copier &> /dev/null || pipx install copier || true
 
 install-uv: install-pipx ## install uv (pre-requisite for install)
 	@command -v uv &> /dev/null || pipx install uv || true
