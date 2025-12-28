@@ -84,6 +84,9 @@ book-build: install-book ## build the book
 book-build-all: install-book ## build the book with all outputs
 	@cd book && uv run jupyter book build --all
 
+book-start: install-book ## start the book preview server
+	@cd book && uv run jupyter book start
+
 book-publish: install-book install-ghp-import ## publish the book
 	@ghp-import -n -p -f book/_build/html
 
