@@ -21,9 +21,6 @@ open_link: true
 package_name: coursetemp
 package_scripts:
 - coursetemp = 'coursetemp.__cli__:main'
-poe_task_files:
-- .tasks.toml
-- .tasks-extra.toml
 project_description: This project provides a comprehensive and flexible template for
     creating and managing online courses, leveraging GitHub for version control and
     Jupyter Book for interactive content delivery, enabling educators to easily develop,

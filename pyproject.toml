@@ -1,36 +1,49 @@
-[tool.poetry]
+[project]
 name = "course-template"
 version = "0.1.0"
 description = "Streamlined course creation template with interactive documentation support"
-authors = ["Young Joon Lee <entelecheia@hotmail.com>"]
-license = "CC-BY-4.0"
-homepage = "https://entelecheia.github.io/course-template"
-repository = "https://github.com/entelecheia/course-template"
+authors = [
+    {name = "Young Joon Lee", email = "entelecheia@hotmail.com"}
+]
+license = {text = "CC-BY-4.0"}
 readme = "README.md"
-packages = [{ include = "coursetemp", from = "src" }]
+requires-python = ">=3.9,<3.13"
+dependencies = [
+    "click>=8.1.3,<9.0.0",
+]
 
-[tool.poetry.scripts]
-coursetemp = 'coursetemp.__cli__:main'
+[project.optional-dependencies]
+dev = [
+    "python-semantic-release>=7.33.1,<8.0.0",
+    "isort>=5.12.0,<6.0.0",
+    "black>=23.0.0",
+    "flake8>=6.0.0,<7.0.0",
+    "mypy>=1.0.0,<2.0.0",
+    "flake8-pyproject>=1.2.2,<2.0.0",
+    "pytest>=7.2.1,<8.0.0",
+    "pytest-cov>=4.0.0,<5.0.0",
+]
+book = [
+    "jupyter-book==1.0.4.post1",
+    "docutils",
+    "sphinx-inline-tabs",
+    "sphinx-examples",
+    "sphinx-proof",
+    "sphinx-hoverxref",
+    "sphinxcontrib-youtube",
+    "sphinxcontrib-video",
+    "sphinx-thebe",
+    "sphinxcontrib-mermaid",
+    "sphinx-carousel",
+    "sphinxcontrib-lastupdate",
+]
 
-[tool.poetry.dependencies]
-python = ">=3.9,<3.13"
-click = "^8.1.3"
+[project.scripts]
+coursetemp = "coursetemp.__cli__:main"
 
-[tool.poetry.group.dev]
-optional = true
-
-[tool.poetry.group.dev.dependencies]
-python-semantic-release = "^7.33.1"
-isort = "^5.12.0"
-black = ">=23.0.0"
-flake8 = "^6.0.0"
-mypy = "^1.0.0"
-flake8-pyproject = "^1.2.2"
-pytest = "^7.2.1"
-pytest-cov = "^4.0.0"
-
-[tool.poe]
-include = [".tasks.toml", ".tasks-extra.toml"]
+[project.urls]
+Homepage = "https://entelecheia.github.io/course-template"
+Repository = "https://github.com/entelecheia/course-template"
 
 [tool.black]
 # 'extend-exclude' excludes files or directories in addition to the defaults
@@ -98,7 +111,7 @@ tag_format = "v$version"
 
 [tool.semantic_release]
 branch = "main"
-version_toml = "pyproject.toml:tool.poetry.version"
+version_toml = "pyproject.toml:project.version"
 version_pattern = '.docker/docker.version:IMAGE_VERSION="{version}"'
 version_variable = "src/coursetemp/_version.py:__version__"
 version_source = "tag"
@@ -111,9 +124,12 @@ changelog_file = "CHANGELOG.md"
 upload_to_repository = true
 upload_to_release = true
 hvcs = "github" # hosting version control system, gitlab is also supported
-build_command = "poetry build --no-cache"
+build_command = "uv build"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/coursetemp"]
 
 [build-system]
-requires = ["poetry-core>=1.0.0"]
-build-backend = "poetry.core.masonry.api"
+requires = ["hatchling"]
+build-backend = "hatchling.build"
 
