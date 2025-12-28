@@ -1,6 +1,6 @@
 version: 1
 project:
-  # title: Course Template
+  title: Course Template
   authors:
     - name: Young Joon Lee
   copyright: '2025'
@@ -33,7 +33,7 @@ site:
     favicon: https://assets.entelecheia.ai/favicon.png
     analytics_google: G-BQJE5V9RK2
     folders: true
-    logo_text: Course Template
+    logo_text: Cheju Halla University
     github_repository_url: https://github.com/entelecheia/course-template
     github_repository_branch: main
     use_issues_button: true
