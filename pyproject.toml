@@ -24,7 +24,7 @@ dev = [
     "pytest-cov>=4.0.0,<5.0.0",
 ]
 book = [
-    "jupyter-book==1.0.4.post1",
+    "jupyter-book>=2.0.0",
     "docutils",
     "sphinx-inline-tabs",
     "sphinx-examples",

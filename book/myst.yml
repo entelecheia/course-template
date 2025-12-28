@@ -1,0 +1,44 @@
+version: 1
+project:
+  title: Course Template
+  authors:
+    - name: Young Joon Lee
+  copyright: '2024'
+  github: entelecheia/course-template
+  thebe:
+    binder:
+      repo: entelecheia/course-template
+      provider: github
+      ref: main
+  exports:
+    - format: pdf
+      template: plain_latex_book
+      output: exports/book.pdf
+  toc:
+    - file: index.md
+    - title: Lecture Notes
+      children:
+        - file: week01/index.md
+          children:
+            - file: week01/session1.md
+            - file: week01/session2.md
+    - title: About
+      children:
+        - file: syllabus/index.md
+        - file: about/index.md
+        - url: https://halla.ai
+          title: CHU AI Department
+site:
+  options:
+    favicon: https://assets.entelecheia.ai/favicon.png
+    analytics_google: G-BQJE5V9RK2
+    folders: true
+    github_repository_url: https://github.com/entelecheia/course-template
+    github_repository_branch: main
+    use_issues_button: true
+    use_repository_button: true
+    use_edit_page_button: true
+    extra_js:
+      - https://chat.entelecheia.app/embed/anythingllm-chat-widget.min.js
+    extra_css: []
+  template: book-theme

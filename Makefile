@@ -79,10 +79,10 @@ tests-cov-fail: ## run tests with pytest and generate a coverage report, fail if
 ##@ Book
 
 book-build: install-book ## build the book
-	@uv run jupyter-book build book
+	@cd book && uv run jupyter book build
 
 book-build-all: install-book ## build the book with all outputs
-	@uv run jupyter-book build book --all
+	@cd book && uv run jupyter book build --all
 
 book-publish: install-book install-ghp-import ## publish the book
 	@ghp-import -n -p -f book/_build/html

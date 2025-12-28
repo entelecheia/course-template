@@ -35,7 +35,7 @@ jobs:
         run: uv sync --extra book
       # Build the book
       - name: Build the book
-        run: uv run jupyter-book build book
+        run: cd book && uv run jupyter book build
 
       # Deploy the book's HTML to gh-pages branch
       - name: GitHub Pages action
