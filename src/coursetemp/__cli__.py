@@ -11,7 +11,7 @@ from coursetemp._version import __version__
 @click.version_option(__version__)
 @click.option("--count", "-c", default=1, help="Number of greetings.")
 @click.option("--name", "-n", prompt="Your name", help="The person to greet.")
-def main(count, name):
+def main(count: int, name: str) -> None:
     """
     This is the cli function of the package.
     You can use this function to print a message to the user.
