@@ -15,7 +15,15 @@
 # Type `make` to show the available targets and a description of each.
 #
 .DEFAULT_GOAL := help
-.PHONY: help
+SHELL := /bin/bash
+.PHONY: help clean-cov clean-pycache clean-build clean-docs clean \
+	format-black format-isort format \
+	lint-black lint-flake8 lint-isort lint-mypy lint-mypy-reports lint \
+	tests tests-cov tests-cov-fail \
+	book-build book-build-all book-start book-publish install-ghp-import \
+	install install-dev install-book install-all update lock \
+	install-pipx install-uv install-commitizen install-precommit install-precommit-hooks install-copier \
+	initialize remove-template init-project reinit-project
 help:  ## Display this help
 	@awk 'BEGIN {FS = ":.*##"; printf "\nUsage:\n  make \033[36m<target>\033[0m\n"} /^[a-zA-Z_-]+:.*?##/ { printf "  \033[36m%-25s\033[0m %s\n", $$1, $$2 } /^##@/ { printf "\n\033[1m%s\033[0m\n", substr($$0, 5) } ' $(MAKEFILE_LIST)
 
@@ -74,18 +82,18 @@ tests-cov: ## run tests with pytest and generate a coverage report
 	@pytest --cov=src --cov-report=xml
 
 tests-cov-fail: ## run tests with pytest and generate a coverage report, fail if coverage is below 50%
-	@pytest --cov=src --cov-report=xml --cov-fail-under=50 --junitxml=tests/pytest.xml | tee tests/pytest-coverage.txt
+	@set -o pipefail; pytest --cov=src --cov-report=xml --cov-fail-under=50 --junitxml=tests/pytest.xml | tee tests/pytest-coverage.txt
 
 ##@ Book
 
 book-build: install-book ## build the book
-	@cd book && uv run jupyter book build
+	@cd book && uv run jupyter-book build
 
 book-build-all: install-book ## build the book with all outputs
-	@cd book && uv run jupyter book build --all
+	@cd book && uv run jupyter-book build --all
 
 book-start: install-book ## start the book preview server
-	@cd book && uv run jupyter book start
+	@cd book && uv run jupyter-book start
 
 book-publish: install-book install-ghp-import ## publish the book
 	@ghp-import -n -p -f book/_build/html
@@ -121,7 +129,7 @@ install-pipx: ## install pipx (pre-requisite for external tools)
 install-uv: install-pipx ## install uv (pre-requisite for install)
 	@command -v uv &> /dev/null || pipx install uv || true
 
-install-commitzen: install-pipx ## install commitzen (pre-requisite for commit)
+install-commitizen: install-pipx ## install commitizen (pre-requisite for commit)
 	@command -v cz &> /dev/null || pipx install commitizen || true
 
 install-precommit: install-pipx ## install pre-commit
@@ -129,6 +137,9 @@ install-precommit: install-pipx ## install pre-commit
 
 install-precommit-hooks: install-precommit ## install pre-commit hooks
 	@pre-commit install
+
+install-copier: install-pipx ## install copier (pre-requisite for init-project)
+	@command -v copier &> /dev/null || pipx install copier || true
 
 initialize: install-pipx ## initialize the project environment
 	@pipx install copier

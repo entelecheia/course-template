@@ -101,6 +101,7 @@ pretty = true
 [tool.pytest.ini_options]
 testpaths = ["tests"]
 addopts = "-p no:cacheprovider" # deactivating pytest caching.
+pythonpath = ["src"]
 
 [tool.coverage.report]
 exclude_lines = ['if __name__ == "__main__":']
@@ -132,4 +133,3 @@ packages = ["src/coursetemp"]
 [build-system]
 requires = ["hatchling"]
 build-backend = "hatchling.build"
-
